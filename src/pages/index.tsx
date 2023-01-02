@@ -7,7 +7,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
-  const hello = trpc.example.hello.useQuery({ text: "from tRPC" });
+  // const hello = trpc.example.hello.useQuery({ text: "from tRPC" });
 
   return (
     <>
@@ -47,7 +47,7 @@ const Home: NextPage = () => {
           </div>
           <div className={styles.showcaseContainer}>
             <p className={styles.showcaseText}>
-              {hello.data ? hello.data.greeting : "Loading tRPC query..."}
+              {/* {hello.data ? hello.data.greeting : "Loading tRPC query..."} */}
             </p>
             <AuthShowcase />
           </div>
@@ -62,16 +62,16 @@ export default Home;
 const AuthShowcase: React.FC = () => {
   const { data: sessionData } = useSession();
 
-  const { data: secretMessage } = trpc.auth.getSecretMessage.useQuery(
-    undefined, // no input
-    { enabled: sessionData?.user !== undefined },
-  );
+  // const { data: secretMessage } = trpc.auth.getSecretMessage.useQuery(
+  //   undefined, // no input
+  //   { enabled: sessionData?.user !== undefined },
+  // );
 
   return (
     <div className={styles.authContainer}>
       <p className={styles.showcaseText}>
         {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
-        {secretMessage && <span> - {secretMessage}</span>}
+        {/* {secretMessage && <span> - {secretMessage}</span>} */}
       </p>
       <button
         className={styles.loginButton}
