@@ -8,7 +8,6 @@ import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
   const currencies = trpc.currencies.getCurrencies.useQuery();
-  console.log("CURRENCIES", currencies);
 
   return (
     <>
