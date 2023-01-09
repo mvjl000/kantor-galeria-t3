@@ -1,20 +1,36 @@
-import { type AppType } from "next/app";
-import { type Session } from "next-auth";
-import { SessionProvider } from "next-auth/react";
-
-import { trpc } from "../utils/trpc";
-
+import type { AppProps } from "next/app";
+import { ThemeProvider } from "@emotion/react";
+import { theme } from "../styles/theme";
 import "../styles/globals.css";
+import Layout from "../components/Layout";
+import Head from "next/head";
+import { UserProvider } from "@auth0/nextjs-auth0/client";
+import { trpc } from "../utils/trpc";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const MyApp: AppType<{ session: Session | null }> = ({
-  Component,
-  pageProps: { session, ...pageProps },
-}) => {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <SessionProvider session={session}>
-      <Component {...pageProps} />
-    </SessionProvider>
+    <>
+      <Head>
+        <link rel="icon" href="/icons/euro.png" />
+        <link rel="apple-touch-icon" href="/icons/euro.png" />
+        <meta
+          name="description"
+          content="Kantor Galeria Rzeszów - wymieniaj waluty po atrakcyjnych kursach w świetnej lokalizacji. Zobacz aktualne kursy euro, dolara, funta i ponad 20 innych walut!"
+        />
+        <title>Kantor Galeria Rzeszów</title>
+      </Head>
+      <ThemeProvider theme={theme}>
+        <UserProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+          <ToastContainer />
+        </UserProvider>
+      </ThemeProvider>
+    </>
   );
-};
+}
 
 export default trpc.withTRPC(MyApp);
