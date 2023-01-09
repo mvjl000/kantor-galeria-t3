@@ -1,8 +1,5 @@
-import styles from "./index.module.css";
 import { type NextPage } from "next";
-import Head from "next/head";
-import Link from "next/link";
-import { signIn, signOut, useSession } from "next-auth/react";
+// import { signIn, signOut, useSession } from "next-auth/react";
 import { trpc } from "../utils/trpc";
 import ReactModal from "react-modal";
 import Modal from "../components/Modal";
@@ -10,6 +7,7 @@ import { CurrencyType } from "../types/types";
 import { useState } from "react";
 import CurrenciesList from "../components/currencies/CurrenciesList/CurrenciesList";
 import Currency from "../components/currencies/Currency/Currency";
+import AreaChartComponent from "../components/AreaChart";
 
 ReactModal.setAppElement("#__next");
 
@@ -55,8 +53,9 @@ const Home: NextPage = () => {
         onRequestClose={handleCloseModal}
         contentLabel="Wykres waluty"
       >
-        {/* {clickedCurrency && <AreaChartComponent price_history={clickedCurrency.price_history} />} */}
-        <p>test</p>
+        {clickedCurrency && (
+          <AreaChartComponent price_history={clickedCurrency.price_history} />
+        )}
       </Modal>
     </CurrenciesList>
   );
