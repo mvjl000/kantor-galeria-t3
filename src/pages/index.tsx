@@ -8,6 +8,8 @@ import ReactModal from "react-modal";
 import Modal from "../components/Modal";
 import { CurrencyType } from "../types/types";
 import { useState } from "react";
+import CurrenciesList from "../components/currencies/CurrenciesList/CurrenciesList";
+import Currency from "../components/currencies/Currency/Currency";
 
 ReactModal.setAppElement("#__next");
 
@@ -17,7 +19,7 @@ const Home: NextPage = () => {
     CurrencyType | undefined
   >(undefined);
 
-  const currencies = trpc.currencies.getCurrencies.useQuery();
+  const { data, error, isLoading } = trpc.currencies.getCurrencies.useQuery();
 
   const handleOpenModal = (currency: CurrencyType) => {
     document.body.classList.add("no-scroll");
@@ -30,16 +32,33 @@ const Home: NextPage = () => {
     setClickedCurrency(undefined);
   };
 
+  if (error || !data) {
+    return <p>Something went wrong</p>;
+  }
+
+  if (isLoading) {
+    return <p>Loading</p>;
+  }
+
   return (
-    <div style={{ height: "2000px", backgroundColor: "#aaa" }}>
+    <CurrenciesList>
+      {data.currencies.map((item) => (
+        <Currency
+          key={item.id}
+          // @ts-ignore >> trpc package fault
+          data={item}
+          handleCurrencyClick={handleOpenModal}
+        />
+      ))}
       <Modal
         isOpen={isModalOpen}
         onRequestClose={handleCloseModal}
         contentLabel="Wykres waluty"
       >
+        {/* {clickedCurrency && <AreaChartComponent price_history={clickedCurrency.price_history} />} */}
         <p>test</p>
       </Modal>
-    </div>
+    </CurrenciesList>
   );
 };
 
