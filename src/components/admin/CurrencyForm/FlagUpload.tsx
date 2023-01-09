@@ -1,4 +1,5 @@
 import React, { useRef, useState, FocusEventHandler } from "react";
+import { errorToast } from "../../../utils/toasts";
 import { ImageButton } from "../../buttons.styles";
 
 interface FlagUploadProps {
@@ -24,6 +25,7 @@ const FlagUpload: React.FC<FlagUploadProps> = ({
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files || event.target.files.length !== 1) {
       setIsValid(false);
+      errorToast("Nie udało się załadować obrazka!");
       return;
     }
     setIsValid(true);
@@ -42,6 +44,7 @@ const FlagUpload: React.FC<FlagUploadProps> = ({
 
     fileReader.onerror = () => {
       setIsValid(false);
+      errorToast("Nie udało się załadować obrazka!");
     };
 
     fileReader.readAsDataURL(flagFile);
@@ -52,6 +55,24 @@ const FlagUpload: React.FC<FlagUploadProps> = ({
       filePickerRef.current.click();
     }
   };
+
+  if (previewUrl && !isValid) {
+    return (
+      <>
+        <input
+          ref={filePickerRef}
+          style={{ display: "none" }}
+          type="file"
+          accept="image/svg+xml"
+          onChange={handleFileChange}
+          onBlur={handleBlur}
+        />
+        <ImageButton type="button" onClick={pickImageHandler}>
+          <span className="error-message">Kliknij by spróbować ponownie</span>
+        </ImageButton>
+      </>
+    );
+  }
 
   return (
     <>

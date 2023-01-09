@@ -77,6 +77,11 @@ export const ImageButton = styled.button`
     height: 35px;
   }
 
+  span.error-message {
+    font-size: ${({ theme }) => theme.font.size.xSmall};
+    color: red;
+  }
+
   &:hover,
   &:focus {
     text-decoration: underline;
