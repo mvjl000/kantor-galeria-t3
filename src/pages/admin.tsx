@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import CurrenciesTable from "../components/admin/CurrenciesTable/CurrenciesTable";
+import CurrencyForm from "../components/admin/CurrencyForm/CurrencyForm";
 import { H1 } from "../components/ui";
 import { trpc } from "../utils/trpc";
 
@@ -15,6 +16,7 @@ const Admin: NextPage = () => {
       <H1>Panel Administratora</H1>
       {/* @ts-ignore >> trpc package fault */}
       <CurrenciesTable currencies={data.currencies} />
+      <CurrencyForm />
     </>
   );
 };

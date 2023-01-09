@@ -44,6 +44,56 @@ export const H2 = styled.h2`
   }
 `;
 
+export const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-height: 92px;
+  width: 100%;
+
+  label {
+    font-size: ${({ theme }) => theme.font.size.xSmall};
+    font-weight: ${({ theme }) => theme.font.weight.medium};
+
+    ${({ theme }) => theme.mq.desktop} {
+      font-size: ${({ theme }) => theme.font.size.small};
+    }
+  }
+
+  p {
+    margin-top: 2px;
+    font-size: ${({ theme }) => theme.font.size.xSmall};
+    color: red;
+  }
+`;
+
+export const StyledInput = styled.input`
+  height: 50px;
+  width: 100%;
+  padding: 0 5px;
+  border: 1px solid ${({ theme }) => theme.colors.black};
+  border-radius: 3px;
+  font-size: ${({ theme }) => theme.font.size.xSmall};
+
+  ${({ theme }) => theme.mq.desktop} {
+    font-size: ${({ theme }) => theme.font.size.small};
+  }
+`;
+
+export const SubmitButtonWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 85px;
+  column-gap: 25px;
+  width: 100%;
+
+  p {
+    margin-top: 2px;
+    font-size: ${({ theme }) => theme.font.size.xSmall};
+    color: red;
+  }
+`;
+
 interface LoaderProps {
   size: "big" | "small";
   color: "black" | "white";
