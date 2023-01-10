@@ -7,7 +7,7 @@ const Options: React.FC = () => {
   return (
     <Wrapper>
       <H2>Opcje</H2>
-      <Link href="/api/auth/logout" passHref={false}>
+      <Link href="/api/auth/logout" passHref={true} legacyBehavior={true}>
         <SignOutButton>Wyloguj się</SignOutButton>
       </Link>
     </Wrapper>
