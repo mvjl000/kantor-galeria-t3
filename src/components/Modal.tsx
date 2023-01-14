@@ -1,4 +1,3 @@
-import React from "react";
 import ReactModal from "react-modal";
 import CloseIcon from "../../public/icons/close-icon.svg";
 import styled from "@emotion/styled";
