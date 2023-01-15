@@ -39,11 +39,11 @@ const AreaChartComponent: React.FC<AreaChartProps> = ({ price_history }) => {
       return [buy, sell];
     });
 
-    const minValue = Math.min(...yAxisRangeValues);
-    const maxValue = Math.max(...yAxisRangeValues);
-
     // Subtracts one tenth so that the lowest point is not on the X axis - just for the aesthetics
-    return [minValue - 0.1, maxValue + 0.1];
+    const minValue = Math.min(...yAxisRangeValues) - 0.1;
+    const maxValue = Math.max(...yAxisRangeValues) + 0.1;
+
+    return [Number(minValue.toFixed(3)), Number(maxValue.toFixed(3))];
   }, []);
 
   if (!price_history || yAxisRange === false) {
