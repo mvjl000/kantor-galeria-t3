@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { flexCenter } from "../../styles/mixins";
 
 export const PhonesList = styled.ul`
-  margin: 5rem auto;
+  margin: 3rem auto;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -35,6 +35,11 @@ export const PhonesList = styled.ul`
   }
 
   ${({ theme }) => theme.mq.desktop} {
+    margin: 4rem auto;
+  }
+
+  ${({ theme }) => theme.mq.desktop} {
+    margin: 5rem auto;
     gap: 25px;
 
     li {
