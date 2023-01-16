@@ -118,7 +118,7 @@ export const TableActionsButton = styled.button`
     content: "";
   }
 
-  span,
+  span:not(.visually-hidden),
   &::before,
   &::after {
     display: block;
