@@ -79,8 +79,8 @@ const AreaChartComponent: React.FC<AreaChartProps> = ({ price_history }) => {
         <Legend
           formatter={(value) => (value === "buy" ? "Kupno" : "Sprzedaż")}
         />
-        <Line type="monotone" dataKey="buy" stroke="#0052b4" />
-        <Line type="monotone" dataKey="sell" stroke="#82ca9d" />
+        <Line type="monotone" dataKey="buy" stroke="#a09d09" />
+        <Line type="monotone" dataKey="sell" stroke="#1b78c4" />
       </LineChart>
     </ResponsiveContainer>
   );

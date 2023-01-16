@@ -39,8 +39,8 @@ export const theme: Theme = {
   },
   zIndex: {
     laoder: 2,
-    modal: 10,
     menu: 100,
     burger: 101,
+    modal: 1000,
   },
 };

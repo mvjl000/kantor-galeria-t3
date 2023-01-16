@@ -45,7 +45,7 @@ a {
 * {
   box-sizing: border-box;
 }
-
+/* <ACCESSIBILITY> Hiding class, making content visible only to screen readers but not visually */
 .visually-hidden {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
@@ -54,4 +54,14 @@ a {
   position: absolute;
   white-space: nowrap;
   width: 1px;
+}
+
+/* Fix uneven default alignment */
+.recharts-legend-wrapper {
+  left: 50% !important;
+  transform: translateX(-50%);
+}
+
+.ReactModal__Overlay {
+  z-index: 1000;
 }
