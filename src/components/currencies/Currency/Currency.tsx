@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { CurrencyType, ReactFCWithProps } from "../../../types/types";
 import {
   FlagWrapper,
@@ -6,7 +7,9 @@ import {
   CurrencyFullName,
   CurrencyInfoWrapper,
   CurrencyPriceWrapper,
+  ChartIconWrapper,
 } from "./Currency.styles";
+import ChartIcon from "../../../../public/icons/chart.svg";
 
 interface CurrencyProps {
   data: CurrencyType;
@@ -18,7 +21,10 @@ const Currency: ReactFCWithProps<CurrencyProps> = ({
   handleCurrencyClick,
 }) => {
   return (
-    <Wrapper onClick={() => handleCurrencyClick(data)}>
+    <Wrapper
+      onClick={() => handleCurrencyClick(data)}
+      aria-label="Otwórz wykres"
+    >
       <CurrencyInfoWrapper>
         <FlagWrapper>
           <img alt={`flaga ${data.name}`} src={data.image} />
@@ -36,6 +42,10 @@ const Currency: ReactFCWithProps<CurrencyProps> = ({
           Sprzedaż: <span>{Number(data.sell)}</span>
         </p>
       </CurrencyPriceWrapper>
+      <ChartIconWrapper>
+        <Image src={ChartIcon} width={25} height={25} alt="Wykres" />
+        <span className="visually-hidden">Dostępny wykres</span>
+      </ChartIconWrapper>
     </Wrapper>
   );
 };

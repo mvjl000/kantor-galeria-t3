@@ -6,23 +6,24 @@ export const Wrapper = styled.button`
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   grid-row-gap: 15px;
-  padding: 10px 15px;
+  padding: 10px 35px 10px 15px;
   border: 1px solid #ccc;
   border-radius: 8px;
   cursor: pointer;
   transition: 0.25s;
   background-color: #fff;
+  position: relative;
 
   ${({ theme }) => theme.mq.desktop + "and (orientation: landscape)"} {
-    padding: 15px 20px;
+    padding: 15px 35px 15px 20px;
   }
 
   ${({ theme }) => theme.mq.bigDesktop} {
-    padding: 17px 0 17px 22px;
+    padding: 17px 35px 17px 22px;
   }
 
   ${({ theme }) => theme.mq.huge} {
-    padding: 17px 22px;
+    padding: 17px 35px 17px 22px;
   }
 `;
 
@@ -70,4 +71,25 @@ export const CurrencyFullName = styled.p`
   color: ${({ theme }) => theme.font.color.grey};
   font-weight: ${({ theme }) => theme.font.weight.light};
   text-align: left;
+`;
+
+export const ChartIconWrapper = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  ${({ theme }) => theme.mq.desktop + "and (orientation: landscape)"} {
+    top: 15px;
+    right: 20px;
+  }
+
+  ${({ theme }) => theme.mq.bigDesktop} {
+    top: 17px;
+    right: 20px;
+  }
+
+  ${({ theme }) => theme.mq.huge} {
+    top: 17px;
+    right: 20px;
+  }
 `;

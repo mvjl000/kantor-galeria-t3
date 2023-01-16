@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.section`
-  padding: 30px;
+  padding: 15px;
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 20px;
@@ -20,6 +20,7 @@ export const Wrapper = styled.section`
   }
 
   ${({ theme }) => theme.mq.desktop + "and (orientation: landscape)"} {
+    padding: 30px;
     grid-template-columns: repeat(3, 1fr);
     grid-row-gap: 25px;
     grid-column-gap: 25px;
