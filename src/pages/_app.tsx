@@ -13,6 +13,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
+        <meta
+          name="google-site-verification"
+          content={process.env.GOOGLE_SITE_VERIFICATION}
+        />
+        <meta name="robots" content="index, follow" />
         <link rel="icon" href="/icons/euro.png" />
         <link rel="apple-touch-icon" href="/icons/euro.png" />
         <meta

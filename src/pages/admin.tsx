@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import Head from "next/head";
 import CurrenciesTable from "../components/admin/CurrenciesTable/CurrenciesTable";
 import CurrencyForm from "../components/admin/CurrencyForm/CurrencyForm";
 import Options from "../components/admin/Options/Options";
@@ -19,6 +20,9 @@ const Admin: NextPage = () => {
 
   return (
     <>
+      <Head>
+        <title>Kantor | Panel Administratora</title>
+      </Head>
       <H1>Panel Administratora</H1>
       {/* @ts-ignore >> trpc package fault */}
       <CurrenciesTable currencies={data.currencies} />

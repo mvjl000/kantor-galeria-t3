@@ -12,6 +12,7 @@ export const serverSchema = z.object({
   AUTH0_ALLOWED_LOGOUT_URL: z.string().url(),
   DATABASE_URL: z.string().url(),
   CRON_API_KEY: z.string(),
+  GOOGLE_SITE_VERIFICATION: z.string(),
 });
 
 export const clientSchema = z.object({
