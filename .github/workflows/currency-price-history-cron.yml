@@ -1,8 +1,7 @@
 name: currency-price-history-cron
 on:
   schedule:
-    - cron: '0 14 * * *'
-  # TEST CRON 1
+    - cron: '0 0 * * *'
 jobs:
   cron:
     runs-on: ubuntu-latest
