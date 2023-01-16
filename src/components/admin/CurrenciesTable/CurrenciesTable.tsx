@@ -54,7 +54,11 @@ const CurrenciesTable: React.FC<CurrenciesTableProps> = ({ currencies }) => {
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
     }),
-    useSensor(TouchSensor)
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        distance: 15,
+      },
+    })
   );
 
   const handleReindex = async (currencies: CurrencyType[]) => {
