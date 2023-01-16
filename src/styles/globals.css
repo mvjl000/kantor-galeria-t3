@@ -55,3 +55,9 @@ a {
   white-space: nowrap;
   width: 1px;
 }
+
+/* Fix uneven default alignment */
+.recharts-legend-wrapper {
+  left: 50% !important;
+  transform: translateX(-50%);
+}
