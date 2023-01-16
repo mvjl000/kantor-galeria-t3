@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { flexCenter } from "../../../styles/mixins";
+import { flexCenter, flexColumnCenter } from "../../../styles/mixins";
 
 export const TableWrapper = styled.section`
   margin: 30px auto 20px;
@@ -97,5 +97,39 @@ export const StyledTable = styled.table`
     &:focus {
       background-color: ${({ theme }) => theme.colors.lightGrey};
     }
+  }
+`;
+
+export const TableActionsButton = styled.button`
+  ${flexColumnCenter};
+  gap: 4px;
+  height: 40px;
+  width: 25px;
+  padding: 0;
+  margin: 0 auto;
+  border: none;
+  background-color: ${({ theme }) => theme.colors.white};
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background-color 0.1s;
+
+  &::before,
+  &::after {
+    content: "";
+  }
+
+  span,
+  &::before,
+  &::after {
+    display: block;
+    width: 4px;
+    height: 4px;
+    background-color: #000;
+    border-radius: 50%;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: ${({ theme }) => theme.colors.lightGrey};
   }
 `;
