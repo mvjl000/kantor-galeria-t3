@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <meta
           name="google-site-verification"
-          content={process.env.GOOGLE_SITE_VERIFICATION}
+          content={process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION}
         />
         <meta name="robots" content="index, follow" />
         <link rel="icon" href="/icons/euro.png" />
