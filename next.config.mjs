@@ -12,4 +12,8 @@
 
 export default defineNextConfig({
   reactStrictMode: true,
+  i18n: {
+    locales: ['pl'],
+    defaultLocale: 'pl'
+  }
 });

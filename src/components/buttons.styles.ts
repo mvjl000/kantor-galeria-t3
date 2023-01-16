@@ -70,6 +70,7 @@ export const ImageButton = styled.button`
   font-size: ${({ theme }) => theme.font.size.xSmall};
   font-weight: ${({ theme }) => theme.font.weight.bold};
   background-color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.black};
   cursor: pointer;
 
   img {
