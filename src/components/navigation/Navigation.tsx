@@ -25,14 +25,14 @@ const Navigation: React.FC = () => {
     <OuterWrapper>
       <LogoWrapper>
         <Link href="/" passHref={true} legacyBehavior>
-          {/* <a> */}
-          <Image
-            src="/images/kantor_logo_black.png"
-            alt="Logo kantoru"
-            width={243}
-            height={64}
-          />
-          {/* </a> */}
+          <a>
+            <Image
+              src="/images/kantor_logo_black.png"
+              alt="Logo kantoru"
+              width={243}
+              height={64}
+            />
+          </a>
         </Link>
       </LogoWrapper>
       <BurgerButton onClick={toggleSideMenu} isOpen={isOpen}>
