@@ -3,9 +3,8 @@ import { CancelButton, DeleteButton } from "../../buttons.styles";
 import { FlagWrapper } from "../../currencies/Currency/Currency.styles";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import Image from "next/image";
-import ActionDots from "../../../../public/icons/actionDots.svg";
 import { CurrencyType, ReactFCWithProps } from "../../../types/types";
+import { TableActionsButton } from "./CurrenciesTable.styles";
 
 interface TableCurrencyItemProps {
   currency: CurrencyType;
@@ -19,10 +18,16 @@ const TableCurrencyItem: ReactFCWithProps<TableCurrencyItemProps> = ({
   handleDeleteCurrency,
 }) => {
   const [areActionsVisible, setAreActionsVisible] = useState(false);
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({
-      id: currency.id,
-    });
+  const {
+    attributes,
+    listeners,
+    transform,
+    transition,
+    setDraggableNodeRef,
+    setDroppableNodeRef,
+  } = useSortable({
+    id: currency.id,
+  });
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -34,7 +39,7 @@ const TableCurrencyItem: ReactFCWithProps<TableCurrencyItemProps> = ({
   };
 
   return (
-    <tr ref={setNodeRef} style={style} {...attributes} {...listeners}>
+    <tr ref={setDroppableNodeRef} style={style}>
       <td className="flag-cell">
         <div>
           <FlagWrapper>
@@ -59,14 +64,19 @@ const TableCurrencyItem: ReactFCWithProps<TableCurrencyItemProps> = ({
             </div>
           </td>
           <td>
-            <button
-              type="button"
-              className="currency-actions"
-              aria-label="Akcje"
+            <TableActionsButton
               onClick={handleToggleActions}
+              ref={setDraggableNodeRef}
+              {...attributes}
+              {...listeners}
+              type="button"
+              aria-label="Akcje"
             >
-              <Image src={ActionDots} width={5} height={25} alt="Akcje" />
-            </button>
+              <span />
+              <span className="visually-hidden">
+                Przeciągnij aby zmienić kolejność
+              </span>
+            </TableActionsButton>
           </td>
         </>
       ) : (
@@ -86,14 +96,19 @@ const TableCurrencyItem: ReactFCWithProps<TableCurrencyItemProps> = ({
             />
           </td>
           <td>
-            <button
-              type="button"
-              className="currency-actions"
-              aria-label="Akcje"
+            <TableActionsButton
               onClick={handleToggleActions}
+              ref={setDraggableNodeRef}
+              {...attributes}
+              {...listeners}
+              type="button"
+              aria-label="Akcje"
             >
-              <Image src={ActionDots} width={5} height={25} alt="Akcje" />
-            </button>
+              <span />
+              <span className="visually-hidden">
+                Przeciągnij aby zmienić kolejność
+              </span>
+            </TableActionsButton>
           </td>
         </>
       )}

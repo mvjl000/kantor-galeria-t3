@@ -10,6 +10,7 @@ import {
   useSensor,
   useSensors,
   DragEndEvent,
+  DragOverlay,
 } from "@dnd-kit/core";
 import {
   arrayMove,
@@ -17,6 +18,10 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import {
+  restrictToVerticalAxis,
+  restrictToWindowEdges,
+} from "@dnd-kit/modifiers";
 import TableCurrencyItem from "./TableCurrencyItem";
 import {
   StyledTable,
@@ -57,7 +62,7 @@ const CurrenciesTable: React.FC<CurrenciesTableProps> = ({ currencies }) => {
     useSensor(TouchSensor, {
       activationConstraint: {
         delay: 2000,
-        tolerance: 5,
+        tolerance: 0,
       },
     })
   );
@@ -82,6 +87,10 @@ const CurrenciesTable: React.FC<CurrenciesTableProps> = ({ currencies }) => {
     }
   };
 
+  const handleDragStart = () => {
+    document.body.classList.add("no-user-select");
+  };
+
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
 
@@ -97,6 +106,8 @@ const CurrenciesTable: React.FC<CurrenciesTableProps> = ({ currencies }) => {
         return movedArray;
       });
     }
+
+    document.body.classList.remove("no-user-select");
   };
 
   const handleDeleteCurrency = async (id: number) => {
@@ -166,7 +177,9 @@ const CurrenciesTable: React.FC<CurrenciesTableProps> = ({ currencies }) => {
           <DndContext
             sensors={sensors}
             collisionDetection={closestCenter}
+            onDragStart={handleDragStart}
             onDragEnd={handleDragEnd}
+            modifiers={[restrictToVerticalAxis]}
           >
             <SortableContext
               items={items}
@@ -181,6 +194,7 @@ const CurrenciesTable: React.FC<CurrenciesTableProps> = ({ currencies }) => {
                 />
               ))}
             </SortableContext>
+            <DragOverlay modifiers={[restrictToWindowEdges]} />
           </DndContext>
         </tbody>
       </StyledTable>

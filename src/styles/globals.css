@@ -10,6 +10,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Roboto Condensed", sans-serif;
+  overflow-x: hidden;
 }
 
 main {
@@ -23,6 +24,11 @@ body.no-scroll-menu {
 
 body.no-scroll {
   overflow: hidden;
+}
+
+/* Prevents unintended text selection while dragging table items on mobile devices */
+body.no-user-select {
+  user-select: none;
 }
 
 h1,
