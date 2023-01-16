@@ -50,3 +50,11 @@ npx prisma db push
 # generate artifacts (basically all types e.g. Prisma Client). After this command, I recommend restarting your IDE or Typescript Server to make sure everything works fine.
 npx prisma generate
 ```
+
+4. You are good to go to run this app!
+
+```bash
+npm run dev
+# or
+yarn run dev
+```
