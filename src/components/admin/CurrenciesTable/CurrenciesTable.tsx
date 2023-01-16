@@ -56,7 +56,8 @@ const CurrenciesTable: React.FC<CurrenciesTableProps> = ({ currencies }) => {
     }),
     useSensor(TouchSensor, {
       activationConstraint: {
-        distance: 15,
+        delay: 2000,
+        tolerance: 5,
       },
     })
   );
