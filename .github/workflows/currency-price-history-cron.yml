@@ -9,6 +9,6 @@ jobs:
       - name: Call update currency price history api route
         run: |
           curl --request POST \
-          --url 'https://kantor-galeria.vercel.app/api/cron' \
+          --url 'https://kantor-galeria.pl/api/cron' \
           --header 'Authorization: Bearer ${{ secrets.CRON_API_KEY }}'
       - run: echo "🎉 This job's status is ${{ job.status }}"
