@@ -1,28 +1,52 @@
-# Create T3 App
+# [kantor-galeria.pl](https://kantor-galeria.pl)
+
+Currency Exchange Point web app.
+
+### What for?
+
+Allows to update the exchange rate by making changes to the table in the admin panel.
+Every 24 hours, it saves exchange rates in the form of a chart where you can see the price history of the last 7 days
+
+## Technology used in this project
 
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
 
-## What's next? How do I make an app with this?
+**Core tech / platforms:**
+- Typescript
+- Next.js
+- [Prisma](https://www.prisma.io/) - setup with postgreSQL database
+- [Supabase](https://supabase.com/) - postgreSQL database hosting
+- [tRPC](https://trpc.io/) - for end-to-end typesafe API. Such a great developer experience!
+- [Auth0](https://auth0.com/)
+- [Emotion Styled Components](https://emotion.sh/docs/styled)
+- [Formik](https://formik.org/) - for handling forms
+- [dnd kit](https://dndkit.com/) - my personal favorite when it comes to dnd
+- Github Actions - **cron** for saving exchange rates history to charts
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## How to get started?
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+1. Install install dependencies by running:
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+```bash
+npm install
+# or
+yarn install
+```
 
-## Learn More
+2. Add required environment variables. Check *.env.example* and *src/env/schema.mjs* to see what you need! I know, there are quite a few of them out there. However you don't need to be worried, if you forget any variable, you will get the information when you run the app.
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+3. Next step is Prisma.
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+```bash
+# start with this, to see your possibilities
+npx prisma
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+# create migrations and apply them to your database
+npx prisma migrate dev
 
-## How do I deploy this?
+# push the Prisma schema state to the database
+npx prisma db push
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+# generate artifacts (basically all types e.g. Prisma Client). After this command, I recommend restarting your IDE or Typescript Server to make sure everything works fine.
+npx prisma generate
+```
