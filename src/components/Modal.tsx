@@ -7,7 +7,7 @@ import { ReactFCWithProps } from "../types/types";
 
 export const StyledModal = styled(ReactModal)`
   width: 90vw;
-  height: 400px;
+  height: 65vh;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -19,28 +19,31 @@ export const StyledModal = styled(ReactModal)`
   border-radius: 10px;
   position: relative;
 
+  @media (orientation: landscape) {
+    height: 75vh;
+  }
+
   ${({ theme }) => theme.mq.desktop} {
+    height: 60vh;
     width: 80vw;
-    max-width: 1200px;
   }
 `;
 
 export const CloseButton = styled.button`
   ${flexCenter};
+  padding: 5px;
   background-color: ${({ theme }) => theme.colors.white};
   border: 1px solid ${({ theme }) => theme.colors.white};
   position: absolute;
-  top: 15px;
-  right: 15px;
-  width: 35px;
-  height: 35px;
+  top: 10px;
+  right: 10px;
   border-radius: 4px;
   cursor: pointer;
   z-index: 2;
+  transition: background-color 0.15s;
 
-  img {
-    width: 100%;
-    height: 100%;
+  &:hover {
+    background-color: #efefef;
   }
 `;
 
@@ -59,7 +62,13 @@ const Modal: ReactFCWithProps<ModalProps> = (props) => {
         onClick={props.onRequestClose}
       >
         <span className="visually-hidden">Zamknij wykres</span>
-        <Image src={CloseIcon} alt="Ikona zamknięcia" aria-label="Zamknij" />
+        <Image
+          src={CloseIcon}
+          alt="Ikona zamknięcia"
+          width={25}
+          height={25}
+          aria-label="Zamknij"
+        />
       </CloseButton>
       {props.children}
     </StyledModal>
