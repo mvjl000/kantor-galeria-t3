@@ -1,5 +1,30 @@
 import styled from "@emotion/styled";
+import { keyframes } from "@emotion/react";
 import { flexCenter, flexLeft } from "../../../styles/mixins";
+
+const fadeLight = keyframes`
+  0% {
+    background-color: rgba(238, 238, 238, 1);
+  }
+  50% {
+    background-color: rgba(238, 238, 238, 0.8);
+  }
+  100% {
+    background-color: rgba(238, 238, 238, 1);
+  }
+`;
+
+const fadeDark = keyframes`
+  0% {
+    background-color: rgba(221, 221, 221, 1);
+  }
+  50% {
+    background-color: rgba(221, 221, 221, 0.8);
+  }
+  100% {
+    background-color: rgba(221, 221, 221, 1);
+  }
+`;
 
 export const Wrapper = styled.button`
   display: grid;
@@ -91,5 +116,67 @@ export const ChartIconWrapper = styled.div`
   ${({ theme }) => theme.mq.huge} {
     top: 17px;
     right: 20px;
+  }
+`;
+
+export const CurrencySkeletonLoader = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-row-gap: 15px;
+  padding: 10px 35px 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  position: relative;
+
+  ${({ theme }) => theme.mq.desktop + "and (orientation: landscape)"} {
+    padding: 15px 35px 15px 20px;
+  }
+
+  ${({ theme }) => theme.mq.bigDesktop} {
+    padding: 17px 35px 17px 22px;
+  }
+
+  ${({ theme }) => theme.mq.huge} {
+    padding: 17px 35px 17px 22px;
+  }
+
+  .image,
+  .name,
+  .fullname,
+  .price {
+    border-radius: 1px;
+  }
+
+  .image {
+    width: 35px;
+    height: 35px;
+    background-color: rgba(238, 238, 238, 1);
+    animation: ${fadeLight} 2s infinite;
+  }
+
+  .name {
+    height: 25px;
+    width: 85px;
+    margin-left: 15px;
+    background-color: rgba(221, 221, 221, 1);
+    animation: ${fadeDark} 2s infinite;
+  }
+
+  .fullname {
+    height: 17px;
+    width: 100px;
+    margin-left: 15px;
+    background-color: rgba(238, 238, 238, 1);
+    animation: ${fadeLight} 2s infinite;
+  }
+
+  .price {
+    height: 20px;
+    width: 100px;
+    margin-left: 15px;
+    background-color: rgba(221, 221, 221, 1);
+    animation: ${fadeDark} 2s infinite;
   }
 `;
