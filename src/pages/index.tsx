@@ -1,5 +1,4 @@
 import { type NextPage } from "next";
-// import { signIn, signOut, useSession } from "next-auth/react";
 import { trpc } from "../utils/trpc";
 import ReactModal from "react-modal";
 import Modal from "../components/Modal";
