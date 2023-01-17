@@ -7,6 +7,7 @@ import { useState } from "react";
 import CurrenciesList from "../components/currencies/CurrenciesList/CurrenciesList";
 import Currency from "../components/currencies/Currency/Currency";
 import AreaChartComponent from "../components/AreaChart";
+import { ErrorWrapper } from "../components/ui";
 
 ReactModal.setAppElement("#__next");
 
@@ -30,7 +31,12 @@ const Home: NextPage = () => {
   };
 
   if (error || !data) {
-    return <p>Something went wrong</p>;
+    return (
+      <ErrorWrapper>
+        <p className="title">Upsss, coś poszło nie tak :(</p>
+        <p className="message">Odśwież stronę lub spróbuj ponownie później</p>
+      </ErrorWrapper>
+    );
   }
 
   if (isLoading) {
