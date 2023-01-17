@@ -1,5 +1,4 @@
 import { type NextPage } from "next";
-// import { signIn, signOut, useSession } from "next-auth/react";
 import { trpc } from "../utils/trpc";
 import ReactModal from "react-modal";
 import Modal from "../components/Modal";
@@ -8,6 +7,12 @@ import { useState } from "react";
 import CurrenciesList from "../components/currencies/CurrenciesList/CurrenciesList";
 import Currency from "../components/currencies/Currency/Currency";
 import AreaChartComponent from "../components/AreaChart";
+import { ErrorWrapper } from "../components/ui";
+import {
+  CurrencyInfoWrapper,
+  CurrencyPriceWrapper,
+  CurrencySkeletonLoader,
+} from "../components/currencies/Currency/Currency.styles";
 
 ReactModal.setAppElement("#__next");
 
@@ -30,12 +35,44 @@ const Home: NextPage = () => {
     setClickedCurrency(undefined);
   };
 
-  if (error || !data) {
-    return <p>Something went wrong</p>;
+  if (error) {
+    return (
+      <ErrorWrapper>
+        <p className="title">Upsss, coś poszło nie tak :(</p>
+        <p className="message">Odśwież stronę lub spróbuj ponownie później</p>
+      </ErrorWrapper>
+    );
   }
 
   if (isLoading) {
-    return <p>Loading</p>;
+    return (
+      <CurrenciesList>
+        {Array.from(Array(25).keys()).map((item) => (
+          <CurrencySkeletonLoader key={item}>
+            <CurrencyInfoWrapper>
+              <div className="image" />
+              <div className="name" />
+              <div className="fullname" />
+            </CurrencyInfoWrapper>
+            <CurrencyPriceWrapper>
+              <div className="price" />
+              <div className="price" />
+            </CurrencyPriceWrapper>
+          </CurrencySkeletonLoader>
+        ))}
+      </CurrenciesList>
+    );
+  }
+
+  if (!data) {
+    return (
+      <ErrorWrapper>
+        <p className="title">Upsss, coś poszło nie tak :(</p>
+        <p className="message">
+          Brak danych. Odśwież stronę lub spróbuj ponownie później
+        </p>
+      </ErrorWrapper>
+    );
   }
 
   return (

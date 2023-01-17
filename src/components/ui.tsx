@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { keyframes } from "@emotion/react";
+import { flexColumnCenter } from "../styles/mixins";
 
 const rotate = keyframes`
   from {
@@ -7,6 +8,15 @@ const rotate = keyframes`
   }
   to {
     transform: rotate(360deg);
+  }
+`;
+
+const shrink = keyframes`
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
   }
 `;
 
@@ -99,6 +109,37 @@ interface LoaderProps {
   color: "black" | "white";
 }
 
+export const LoaderWrapper = styled.div`
+  ${flexColumnCenter};
+  gap: 5rem;
+  padding: 4rem;
+  margin: 10vh auto 0;
+  width: 85%;
+  max-width: 1200px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+
+  ${({ theme }) => theme.mq.tablet} {
+    width: 65%;
+  }
+
+  ${({ theme }) => theme.mq.desktop} {
+    width: 50%;
+  }
+
+  p.title {
+    font-size: ${({ theme }) => theme.font.size.large};
+    font-weight: ${({ theme }) => theme.font.weight.light};
+    text-align: center;
+  }
+
+  ${({ theme }) => theme.mq.bigDesktop} {
+    p.title {
+      font-size: ${({ theme }) => theme.font.size.xLarge};
+    }
+  }
+`;
+
 export const Loader = styled.div<LoaderProps>`
   width: ${({ size }) => (size === "big" ? "40px" : "20px")};
   height: ${({ size }) => (size === "big" ? "40px" : "20px")};
@@ -108,4 +149,83 @@ export const Loader = styled.div<LoaderProps>`
   border-bottom-color: transparent;
   border-radius: 50%;
   animation: ${rotate} 1.5s ease-out infinite;
+`;
+
+export const ErrorWrapper = styled.div`
+  padding: 7rem 4rem;
+  margin: 10vh auto 0;
+  width: 85%;
+  max-width: 1200px;
+  background-color: #fdc7c7;
+  border-radius: 8px;
+  color: #d40000;
+  position: relative;
+
+  ${({ theme }) => theme.mq.tablet} {
+    width: 75%;
+  }
+
+  ${({ theme }) => theme.mq.desktop} {
+    width: 65%;
+  }
+
+  p.code {
+    font-size: ${({ theme }) => theme.font.size.medium};
+    font-weight: ${({ theme }) => theme.font.weight.medium};
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: #ff7a7a;
+  }
+
+  p.title {
+    font-size: ${({ theme }) => theme.font.size.large};
+    font-weight: ${({ theme }) => theme.font.weight.medium};
+    text-align: center;
+  }
+  p.message {
+    margin-top: 30px;
+    font-size: ${({ theme }) => theme.font.size.medium};
+    font-weight: ${({ theme }) => theme.font.weight.light};
+    text-align: center;
+  }
+
+  ${({ theme }) => theme.mq.bigDesktop} {
+    p.title {
+      font-size: ${({ theme }) => theme.font.size.xLarge};
+    }
+    p.message {
+      font-size: ${({ theme }) => theme.font.size.large};
+    }
+  }
+`;
+
+export const Timer = styled.div`
+  margin: 4rem auto 0;
+  width: 80%;
+  height: 0.8rem;
+  background-color: #ff7a7a;
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+
+  ${({ theme }) => theme.mq.desktop} {
+    width: 65%;
+  }
+
+  ${({ theme }) => theme.mq.bigDesktop} {
+    width: 55%;
+    margin-top: 6rem;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #d40000;
+    height: 100%;
+    width: 100%;
+    animation: ${shrink} 5s forwards ease-in;
+  }
 `;
