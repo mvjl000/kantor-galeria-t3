@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { keyframes } from "@emotion/react";
+import { flexColumnCenter } from "../styles/mixins";
 
 const rotate = keyframes`
   from {
@@ -99,6 +100,37 @@ interface LoaderProps {
   color: "black" | "white";
 }
 
+export const LoaderWrapper = styled.div`
+  ${flexColumnCenter};
+  gap: 5rem;
+  padding: 4rem;
+  margin: 10vh auto 0;
+  width: 85%;
+  max-width: 1200px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+
+  ${({ theme }) => theme.mq.tablet} {
+    width: 65%;
+  }
+
+  ${({ theme }) => theme.mq.desktop} {
+    width: 50%;
+  }
+
+  p.title {
+    font-size: ${({ theme }) => theme.font.size.large};
+    font-weight: ${({ theme }) => theme.font.weight.light};
+    text-align: center;
+  }
+
+  ${({ theme }) => theme.mq.bigDesktop} {
+    p.title {
+      font-size: ${({ theme }) => theme.font.size.xLarge};
+    }
+  }
+`;
+
 export const Loader = styled.div<LoaderProps>`
   width: ${({ size }) => (size === "big" ? "40px" : "20px")};
   height: ${({ size }) => (size === "big" ? "40px" : "20px")};
@@ -108,4 +140,43 @@ export const Loader = styled.div<LoaderProps>`
   border-bottom-color: transparent;
   border-radius: 50%;
   animation: ${rotate} 1.5s ease-out infinite;
+`;
+
+export const ErrorWrapper = styled.div`
+  padding: 7rem 4rem;
+  margin: 10vh auto 0;
+  width: 85%;
+  max-width: 1200px;
+  background-color: #fdc7c7;
+  border-radius: 8px;
+  color: #d40000;
+
+  ${({ theme }) => theme.mq.tablet} {
+    width: 75%;
+  }
+
+  ${({ theme }) => theme.mq.desktop} {
+    width: 65%;
+  }
+
+  p.title {
+    font-size: ${({ theme }) => theme.font.size.large};
+    font-weight: ${({ theme }) => theme.font.weight.medium};
+    text-align: center;
+  }
+  p.message {
+    margin-top: 30px;
+    font-size: ${({ theme }) => theme.font.size.medium};
+    font-weight: ${({ theme }) => theme.font.weight.light};
+    text-align: center;
+  }
+
+  ${({ theme }) => theme.mq.bigDesktop} {
+    p.title {
+      font-size: ${({ theme }) => theme.font.size.xLarge};
+    }
+    p.message {
+      font-size: ${({ theme }) => theme.font.size.large};
+    }
+  }
 `;
