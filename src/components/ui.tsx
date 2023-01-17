@@ -11,6 +11,15 @@ const rotate = keyframes`
   }
 `;
 
+const shrink = keyframes`
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+`;
+
 export const H1 = styled.h1`
   margin-top: 40px;
   padding: 0 20px;
@@ -150,6 +159,7 @@ export const ErrorWrapper = styled.div`
   background-color: #fdc7c7;
   border-radius: 8px;
   color: #d40000;
+  position: relative;
 
   ${({ theme }) => theme.mq.tablet} {
     width: 75%;
@@ -157,6 +167,15 @@ export const ErrorWrapper = styled.div`
 
   ${({ theme }) => theme.mq.desktop} {
     width: 65%;
+  }
+
+  p.code {
+    font-size: ${({ theme }) => theme.font.size.medium};
+    font-weight: ${({ theme }) => theme.font.weight.medium};
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: #ff7a7a;
   }
 
   p.title {
@@ -178,5 +197,35 @@ export const ErrorWrapper = styled.div`
     p.message {
       font-size: ${({ theme }) => theme.font.size.large};
     }
+  }
+`;
+
+export const Timer = styled.div`
+  margin: 4rem auto 0;
+  width: 80%;
+  height: 0.8rem;
+  background-color: #ff7a7a;
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+
+  ${({ theme }) => theme.mq.desktop} {
+    width: 65%;
+  }
+
+  ${({ theme }) => theme.mq.bigDesktop} {
+    width: 55%;
+    margin-top: 6rem;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #d40000;
+    height: 100%;
+    width: 100%;
+    animation: ${shrink} 5s forwards ease-in;
   }
 `;
