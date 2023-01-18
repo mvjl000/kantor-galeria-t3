@@ -14,6 +14,7 @@ import { monthsFromatterPL } from "../utils/formatters";
 import { errorToast } from "../utils/toasts";
 import { PriceHistory } from "../types/types";
 import { ErrorWrapper } from "./ui";
+import { CHART_RANGE_MARGIN } from "../config";
 
 const ChartTitle = styled.p`
   font-size: ${({ theme }) => theme.font.size.small};
@@ -60,9 +61,18 @@ const AreaChartComponent: React.FC<AreaChartProps> = ({
       return [buy, sell];
     });
 
-    // Subtracts one tenth so that the lowest point is not on the X axis - just for the aesthetics
-    const minValue = Math.min(...yAxisRangeValues) - 0.1;
-    const maxValue = Math.max(...yAxisRangeValues) + 0.1;
+    // 15% of average of range values. Determines the size of free space between the extreme values and the edges of the chart - just for the aesthetics.
+    let chartRangeMargin =
+      (yAxisRangeValues.reduce((a, b) => a + b, 0) / yAxisRangeValues.length) *
+      0.15;
+
+    // Limitate chartRangeMargin in case if it's to high
+    if (chartRangeMargin > CHART_RANGE_MARGIN) {
+      chartRangeMargin = CHART_RANGE_MARGIN;
+    }
+
+    const minValue = Math.min(...yAxisRangeValues) - chartRangeMargin;
+    const maxValue = Math.max(...yAxisRangeValues) + chartRangeMargin;
 
     return [Number(minValue.toFixed(3)), Number(maxValue.toFixed(3))];
   }, []);
