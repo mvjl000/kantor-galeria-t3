@@ -8,13 +8,30 @@ import {
   YAxis,
   ResponsiveContainer,
 } from "recharts";
-import { monthsFromatterPL } from "../utils/formatters";
+import styled from "@emotion/styled";
 import { z } from "zod";
+import { monthsFromatterPL } from "../utils/formatters";
 import { errorToast } from "../utils/toasts";
 import { PriceHistory } from "../types/types";
 
+const ChartTitle = styled.p`
+  font-size: ${({ theme }) => theme.font.size.small};
+  font-weight: ${({ theme }) => theme.font.weight.light};
+  text-align: center;
+  letter-spacing: 2px;
+
+  ${({ theme }) => theme.mq.tablet} {
+    font-size: ${({ theme }) => theme.font.size.medium};
+  }
+
+  span {
+    font-weight: ${({ theme }) => theme.font.weight.medium};
+  }
+`;
+
 interface AreaChartProps {
   price_history: PriceHistory;
+  currencyName: string;
 }
 
 const priceHistorySchema = z
@@ -25,7 +42,10 @@ const priceHistorySchema = z
   })
   .array();
 
-const AreaChartComponent: React.FC<AreaChartProps> = ({ price_history }) => {
+const AreaChartComponent: React.FC<AreaChartProps> = ({
+  price_history,
+  currencyName,
+}) => {
   const yAxisRange = useMemo(() => {
     // Validates price_history type
     const { success } = priceHistorySchema.safeParse(price_history);
@@ -51,38 +71,43 @@ const AreaChartComponent: React.FC<AreaChartProps> = ({ price_history }) => {
   }
 
   return (
-    <ResponsiveContainer width="99%" height="99%">
-      <LineChart
-        data={price_history}
-        margin={{ top: 0, right: 50, left: 0, bottom: 0 }}
-      >
-        <XAxis
-          dataKey="date"
-          tickFormatter={(dateString) => {
-            const date = new Date(dateString);
+    <>
+      <ChartTitle>
+        <span>{currencyName}/</span>PLN
+      </ChartTitle>
+      <ResponsiveContainer width="99%" height="99%">
+        <LineChart
+          data={price_history}
+          margin={{ top: 0, right: 50, left: 0, bottom: 0 }}
+        >
+          <XAxis
+            dataKey="date"
+            tickFormatter={(dateString) => {
+              const date = new Date(dateString);
 
-            return `${date.getDate()} ${monthsFromatterPL(date.getMonth())}`;
-          }}
-        />
-        <YAxis domain={yAxisRange} />
-        <Tooltip
-          labelFormatter={(dateString) => {
-            const date = new Date(dateString);
+              return `${date.getDate()} ${monthsFromatterPL(date.getMonth())}`;
+            }}
+          />
+          <YAxis domain={yAxisRange} />
+          <Tooltip
+            labelFormatter={(dateString) => {
+              const date = new Date(dateString);
 
-            return `${date.getDate()} ${monthsFromatterPL(date.getMonth())}`;
-          }}
-          formatter={(value: number, name: string) => [
-            value,
-            name === "buy" ? "Kupno" : "Sprzedaż",
-          ]}
-        />
-        <Legend
-          formatter={(value) => (value === "buy" ? "Kupno" : "Sprzedaż")}
-        />
-        <Line type="monotone" dataKey="buy" stroke="#a09d09" />
-        <Line type="monotone" dataKey="sell" stroke="#1b78c4" />
-      </LineChart>
-    </ResponsiveContainer>
+              return `${date.getDate()} ${monthsFromatterPL(date.getMonth())}`;
+            }}
+            formatter={(value: number, name: string) => [
+              value,
+              name === "buy" ? "Kupno" : "Sprzedaż",
+            ]}
+          />
+          <Legend
+            formatter={(value) => (value === "buy" ? "Kupno" : "Sprzedaż")}
+          />
+          <Line type="monotone" dataKey="buy" stroke="#a09d09" />
+          <Line type="monotone" dataKey="sell" stroke="#1b78c4" />
+        </LineChart>
+      </ResponsiveContainer>
+    </>
   );
 };
 

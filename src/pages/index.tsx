@@ -91,7 +91,10 @@ const Home: NextPage = () => {
         contentLabel="Wykres waluty"
       >
         {clickedCurrency && (
-          <AreaChartComponent price_history={clickedCurrency.price_history} />
+          <AreaChartComponent
+            currencyName={clickedCurrency.name}
+            price_history={clickedCurrency.price_history}
+          />
         )}
       </Modal>
     </CurrenciesList>
