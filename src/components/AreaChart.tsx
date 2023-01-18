@@ -13,6 +13,7 @@ import { z } from "zod";
 import { monthsFromatterPL } from "../utils/formatters";
 import { errorToast } from "../utils/toasts";
 import { PriceHistory } from "../types/types";
+import { ErrorWrapper } from "./ui";
 
 const ChartTitle = styled.p`
   font-size: ${({ theme }) => theme.font.size.small};
@@ -67,7 +68,15 @@ const AreaChartComponent: React.FC<AreaChartProps> = ({
   }, []);
 
   if (!price_history || yAxisRange === false) {
-    return <p>Something went wrong</p>;
+    return (
+      <ErrorWrapper>
+        <p className="title">Upsss, nie udało się stworzyć wykresu!</p>
+        <p className="message">
+          {" "}
+          wystąpił problem z danymi. Spróbuj ponownie później
+        </p>
+      </ErrorWrapper>
+    );
   }
 
   return (
