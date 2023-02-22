@@ -7,6 +7,7 @@ import Head from "next/head";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import { trpc } from "../utils/trpc";
 import { ToastContainer } from "react-toastify";
+import { Analytics } from "@vercel/analytics/react";
 import "react-toastify/dist/ReactToastify.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -30,6 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <UserProvider>
           <Layout>
             <Component {...pageProps} />
+            <Analytics />
           </Layout>
           <ToastContainer />
         </UserProvider>
