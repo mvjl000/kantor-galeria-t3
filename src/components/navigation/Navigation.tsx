@@ -35,7 +35,11 @@ const Navigation: React.FC = () => {
           </a>
         </Link>
       </LogoWrapper>
-      <BurgerButton onClick={toggleSideMenu} isOpen={isOpen}>
+      <BurgerButton
+        onClick={toggleSideMenu}
+        isOpen={isOpen}
+        aria-label={isOpen ? "Zamknij menu" : "Otwórz menu"}
+      >
         <div />
         <div />
         <div />
