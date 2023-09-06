@@ -26,6 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
         <title>Kantor Galeria Rzeszów</title>
       </Head>
+
       <ThemeProvider theme={theme}>
         <UserProvider>
           <Layout>
