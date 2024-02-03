@@ -229,3 +229,23 @@ export const Timer = styled.div`
     animation: ${shrink} 5s forwards ease-in;
   }
 `;
+
+export const InfoText = styled.p`
+    max-width: 1800px;
+    margin: 10px 0;
+    padding: 0 15px;
+    color: ${({ theme }) => theme.font.color.grey};
+    font-size: ${({ theme }) => theme.font.size.xSmall};
+    font-weight: ${({ theme }) => theme.font.weight.light};
+    opacity: 0.5;
+    text-align: center;
+
+    ${({ theme }) => theme.mq.tablet} {
+        text-align: left;
+    }
+
+    ${({ theme }) => theme.mq.desktop} {
+        padding: 0 30px;
+        margin: 0 auto;
+    }
+`;
