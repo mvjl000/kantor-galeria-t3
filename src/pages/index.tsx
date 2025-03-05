@@ -7,7 +7,7 @@ import { useState } from "react";
 import CurrenciesList from "../components/currencies/CurrenciesList/CurrenciesList";
 import Currency from "../components/currencies/Currency/Currency";
 import AreaChartComponent from "../components/AreaChart";
-import { ErrorWrapper } from "../components/ui";
+import { ErrorWrapper, InfoText } from "../components/ui";
 import {
   CurrencyInfoWrapper,
   CurrencyPriceWrapper,
@@ -76,28 +76,34 @@ const Home: NextPage = () => {
   }
 
   return (
-    <CurrenciesList>
-      {data.currencies.map((item) => (
-        <Currency
-          key={item.id}
-          // @ts-ignore >> trpc package fault
-          data={item}
-          handleCurrencyClick={handleOpenModal}
-        />
-      ))}
-      <Modal
-        isOpen={isModalOpen}
-        onRequestClose={handleCloseModal}
-        contentLabel="Wykres waluty"
-      >
-        {clickedCurrency && (
-          <AreaChartComponent
-            currencyName={clickedCurrency.name}
-            price_history={clickedCurrency.price_history}
+    <>
+      <InfoText>
+          Strona ma charakter informacyjny, podana cena nie jest ceną
+          ostateczną. Transakcje ustalamy wyłącznie na miejscu w kantorze.
+      </InfoText>
+      <CurrenciesList>
+        {data.currencies.map((item) => (
+          <Currency
+            key={item.id}
+            // @ts-ignore >> trpc package fault
+            data={item}
+            handleCurrencyClick={handleOpenModal}
           />
-        )}
-      </Modal>
-    </CurrenciesList>
+        ))}
+        <Modal
+          isOpen={isModalOpen}
+          onRequestClose={handleCloseModal}
+          contentLabel="Wykres waluty"
+        >
+          {clickedCurrency && (
+            <AreaChartComponent
+              currencyName={clickedCurrency.name}
+              price_history={clickedCurrency.price_history}
+            />
+          )}
+        </Modal>
+      </CurrenciesList>
+    </>
   );
 };
 
