@@ -20,6 +20,9 @@
       "prettier --write"
     ]
   },
+  "engines": {
+    "node": ">=24.0.0"
+  },
   "dependencies": {
     "@auth0/nextjs-auth0": "^2.0.1",
     "@dnd-kit/core": "^6.0.6",
@@ -45,7 +48,7 @@
     "zod": "^3.18.0"
   },
   "devDependencies": {
-    "@types/node": "^18.0.0",
+    "@types/node": "^24.0.0",
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",
     "@types/react-modal": "^3.13.1",
